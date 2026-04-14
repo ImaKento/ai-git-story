@@ -87,6 +87,10 @@ ai-git-story config set model llama-3.3-70b-versatile
 
 ```bash
 ai-git-story today
+
+# 期間をカスタマイズ
+ai-git-story today --since "3 days ago"
+ai-git-story today --since "2024-01-01" --until "2024-01-31"
 ```
 
 今日のコミットから、以下のような形式でストーリーを生成します：
@@ -119,6 +123,10 @@ ai-git-story today
 
 ```bash
 ai-git-story week
+
+# 期間をカスタマイズ
+ai-git-story week --since "2 weeks ago"
+ai-git-story week --since "2024-01-01" --until "2024-01-31"
 ```
 
 過去7日間のコミットからストーリーを生成します。
@@ -175,8 +183,9 @@ ai-git-story stats --since "1 month ago"
 # 特定ユーザーの統計
 ai-git-story stats --user alice --since "2 weeks ago"
 
-# 期間指定
+# 期間を明示的に指定
 ai-git-story stats --since "2024-01-01" --until "2024-01-31"
+ai-git-story stats --since "2024-03-01" --until "today"
 ```
 
 **出力例:**
@@ -230,8 +239,8 @@ ai-git-story stats --lang en
 |-----------|------|-------------|
 | `--lang <ja\|en>` | 出力言語を指定 | today, week, since, stats |
 | `--user <name>` | 特定ユーザーでフィルタリング | today, week, since, stats |
-| `--since <date>` | 開始日を指定 | stats |
-| `--until <date>` | 終了日を指定 | since, stats |
+| `--since <date>` | 開始日を指定（デフォルト期間を上書き） | today, week, stats |
+| `--until <date>` | 終了日を指定 | today, week, since, stats |
 | `--help`, `-h` | ヘルプを表示 | すべて |
 
 ### 設定コマンド

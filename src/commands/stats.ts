@@ -13,11 +13,12 @@ export async function runStatsCommand(
   useAI: boolean = true,
 ): Promise<void> {
   const period = since || "1 week ago";
+  const periodText = until ? `${period} 〜 ${until}` : period;
 
   if (user) {
-    console.log(`📊 ${user} の統計を取得中...（期間: ${period}）`);
+    console.log(`📊 ${user} の統計を取得中...（期間: ${periodText}）`);
   } else {
-    console.log(`📊 貢献者統計を取得中...（期間: ${period}）`);
+    console.log(`📊 貢献者統計を取得中...（期間: ${periodText}）`);
   }
 
   const commits = getCommits(period, until, user);

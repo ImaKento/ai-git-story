@@ -37,7 +37,8 @@ Commands:
 Today/Week/Since Options:
   --lang <ja|en>    Set language for this run
   --user [name]     Filter commits by author name (interactive select if no name)
-  --until <date>    Set end date (only for 'since' command)
+  --since <date>    Set start date (overrides default period)
+  --until <date>    Set end date
 
 Stats Options:
   --since <date>    Start date (default: "1 week ago")
@@ -66,15 +67,18 @@ Examples:
   ai-git-story today
   ai-git-story today --user                    # Interactive user selection
   ai-git-story today --user "John Doe"         # Specific user
+  ai-git-story today --since "3 days ago"      # Override default period
   ai-git-story week --lang en
   ai-git-story week --user                     # Interactive selection
   ai-git-story week --user alice
+  ai-git-story week --since "2 weeks ago" --until "today"
   ai-git-story since "3 days ago"
   ai-git-story since "2024-01-01" --until "2024-01-31"
   ai-git-story since "1 week ago" --user bob
   ai-git-story stats
   ai-git-story stats --user                    # Interactive selection
   ai-git-story stats --since "1 month ago"
+  ai-git-story stats --since "2024-03-01" --until "today"
   ai-git-story stats --user alice --since "2 weeks ago"
   ai-git-story config set api-key sk-...
   ai-git-story config set language ja
@@ -115,12 +119,12 @@ async function main() {
   const language = resolveLanguage(langArg);
 
   if (subcommand === "today") {
-    await runTodayCommand(language, userArg);
+    await runTodayCommand(language, userArg, sinceArg, untilArg);
     return;
   }
 
   if (subcommand === "week") {
-    await runWeekCommand(language, userArg);
+    await runWeekCommand(language, userArg, sinceArg, untilArg);
     return;
   }
 
