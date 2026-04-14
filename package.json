@@ -1,6 +1,6 @@
 {
   "name": "ai-git-story",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "AI-powered git history analyzer that generates daily development stories from commit history using Groq API",
   "main": "dist/index.js",
   "bin": {
