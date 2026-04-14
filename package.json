@@ -1,0 +1,44 @@
+{
+  "name": "ai-git-story",
+  "version": "0.1.0",
+  "description": "AI-powered git history analyzer that generates daily development stories from commit history using Groq API",
+  "main": "dist/index.js",
+  "bin": {
+    "ai-git-story": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "prepublishOnly": "npm run build",
+    "release:patch": "npm version patch && git push --follow-tags",
+    "release:minor": "npm version minor && git push --follow-tags",
+    "release:major": "npm version major && git push --follow-tags"
+  },
+  "keywords": [
+    "git",
+    "history",
+    "story",
+    "ai",
+    "cli",
+    "changelog",
+    "daily-report",
+    "retrospective"
+  ],
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/prompts": "^2.4.9",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "openai": "^6.34.0",
+    "prompts": "^2.4.2"
+  }
+}
